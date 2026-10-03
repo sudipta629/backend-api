@@ -1,4 +1,6 @@
 from flask import Blueprint, request, jsonify
+from sqlalchemy import false
+
 from extensions import db
 from models import Note
 
@@ -66,3 +68,19 @@ def delete_note(note_id):
     db.session.delete(note)
     db.session.commit()
     return jsonify({"message": "Note deleted successfully"}), 200
+
+
+
+
+@notes_bp.route('/api/notes/<int:note_id>/restore', methods=['PATCH'])
+def restore_note(note_id):
+
+    note = Note.query.get_or_404(note_id)
+
+    if not note.is_deleted:
+        return {"message": "Note is not in trash"}, 400
+
+    note.is_deleted = false()
+    db.session.commit()
+
+    return jsonify({"message": "Note restored successfully"}), 200
