@@ -70,6 +70,22 @@ def delete_note(note_id):
     return jsonify({"message": "Note deleted successfully"}), 200
 
 
+@notes_bp.route('/notes/trash', methods=['GET'])
+def get_trash_notes():
+
+    trash_notes = Note.query.filter_by(is_deleted=True).all()
+
+    output = []
+    for note in trash_notes:
+        note_data = {
+            'id': note.id,
+            'title': note.title,
+            'content': note.content,
+            'is_deleted': note.is_deleted
+        }
+        output.append(note_data)
+
+    return {"trash_notes": output}, 200
 
 
 @notes_bp.route('/api/notes/<int:note_id>/restore', methods=['PATCH'])
@@ -84,3 +100,4 @@ def restore_note(note_id):
     db.session.commit()
 
     return jsonify({"message": "Note restored successfully"}), 200
+
