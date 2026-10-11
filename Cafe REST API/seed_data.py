@@ -1,5 +1,5 @@
 from extensions import db
-from models import MenuItem, Review
+from models import MenuItem
 
 SAMPLE_MENU_ITEMS = [
     {
@@ -94,31 +94,12 @@ SAMPLE_MENU_ITEMS = [
     }
 ]
 
-SAMPLE_REVIEWS = [
-    {
-        "customer_name": "John Doe",
-        "rating": 5,
-        "comment": "The caramel macchiato was absolutely amazing! Great cozy cafe atmosphere."
-    },
-    {
-        "customer_name": "Emily Smith",
-        "rating": 5,
-        "comment": "Best cappuccino and fresh croissants in town. Will definitely visit again!"
-    }
-]
-
 def seed_database():
-    """Populate database with initial cafe menu items and reviews."""
+    """Populate database with initial cafe menu items."""
     if MenuItem.query.first() is None:
         for item_data in SAMPLE_MENU_ITEMS:
             item = MenuItem(**item_data)
             db.session.add(item)
         print("-> Sample menu items seeded successfully.")
-
-    if Review.query.first() is None:
-        for rev_data in SAMPLE_REVIEWS:
-            review = Review(**rev_data)
-            db.session.add(review)
-        print("-> Sample reviews seeded successfully.")
 
     db.session.commit()
