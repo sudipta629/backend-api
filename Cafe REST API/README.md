@@ -39,7 +39,34 @@ The server will run on `http://127.0.0.1:5000`.
 
 ---
 
-### 2. Menu Items
+### 2. User Authentication (No OTP)
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/api/auth/register` (or `/api/register`) | Register user with `name`, `email`, `password` |
+| `POST` | `/api/auth/login` (or `/api/login`) | Login with `email` and `password` |
+| `GET` | `/api/auth/me` (or `/api/me`) | Get current logged in user (Header: `Authorization: Bearer <token>`) |
+| `POST` | `/api/auth/logout` (or `/api/logout`) | Logout |
+
+#### 📝 Register Request Body (`POST /api/auth/register`):
+```json
+{
+  "name": "Alex Johnson",
+  "email": "alex@example.com",
+  "password": "mypassword123"
+}
+```
+
+#### 📝 Login Request Body (`POST /api/auth/login`):
+```json
+{
+  "email": "alex@example.com",
+  "password": "mypassword123"
+}
+```
+
+---
+
+### 3. Menu Items
 | Method | Endpoint | Description |
 |---|---|---|
 | `GET` | `/api/menu` | List all menu items (Filters: `?category=Coffee`, `?search=latte`, `?available=true`) |

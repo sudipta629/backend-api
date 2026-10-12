@@ -18,7 +18,7 @@ if database_url and database_url.startswith('postgres://'):
     database_url = database_url.replace('postgres://', 'postgresql://', 1)
 
 class Config:
-    SECRET_KEY = os.environ.get('SECRET_KEY', 'cafe-secret-key-2026')
+    SECRET_KEY = os.environ.get('SECRET_KEY', 'cafe-super-secret-jwt-key-2026-production-ready-32b')
     SQLALCHEMY_DATABASE_URI = database_url
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ENGINE_OPTIONS = {
