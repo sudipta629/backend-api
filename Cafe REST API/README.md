@@ -148,8 +148,11 @@ The server will run on `http://127.0.0.1:5000`.
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ Tech Stack & Database
 - **Python 3**
 - **Flask**
-- **Flask-SQLAlchemy** (SQLite)
-- **Flask-CORS** (Enables seamless integration with frontend frameworks like React, Vue, Next.js, or HTML/JS)
+- **Flask-SQLAlchemy** (PostgreSQL via `psycopg` / `psycopg2`)
+- **Flask-CORS** (Enables seamless integration with frontend frameworks)
+- **Database**: PostgreSQL hosted on **Render** (`jewellery_shop_nuns`)
+  - **Local Development**: External Database URL (via `.env`)
+  - **Production Deployment**: Internal Database URL on Render
